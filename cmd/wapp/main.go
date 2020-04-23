@@ -3,6 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
+	"os"
+	"path/filepath"
 
 	"github.com/zserge/webview"
 )
@@ -28,7 +30,7 @@ func main() {
 }
 
 func initAppSlice() {
-	appSlice = append(appSlice, "wechat", "youdao")
+	appSlice = append(appSlice, "wechat", "youdao", "time")
 }
 
 func initFlag() {
@@ -72,6 +74,13 @@ func parseArgs() {
 		case "youdao", "yd":
 			web = makeWebview("youdao", 1000, 800,
 				"https://note.youdao.com/web/", true)
+		case "time":
+			path, err := filepath.Abs("web/static/time.html")
+			if err != nil {
+				fmt.Println("Error: web/static/time.html not found")
+				os.Exit(0)
+			}
+			web = makeWebview("time", 600, 600, "file://"+path, true)
 		default:
 			fmt.Println("No support:", apps[0])
 		}
