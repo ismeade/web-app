@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"bytes"
 	"encoding/json"
 	"flag"
@@ -13,6 +14,15 @@ var (
 )
 
 func main() {
+	inputReader := bufio.NewReader(os.Stdin)
+	fmt.Printf("Please enter your name:")
+	input, err := inputReader.ReadString(';')
+	// input, err := inputReader.ReadString('\n')
+	if err != nil {
+		fmt.Println("There were errors reading, exiting program.")
+		return
+	}
+	fmt.Printf("Your name is %s", input)
 	initFlag()
 	parseArgs()
 
@@ -21,12 +31,13 @@ func main() {
 func parseArgs() {
 	if h {
 		flag.Usage()
+		return
 	}
 
 	args := flag.Args()
 	if len(args) == 0 {
 		fmt.Println("dev...")
-		os.Exit(0)
+		return
 	}
 
 	if len(args) >= 2 {
@@ -61,6 +72,6 @@ func initFlag() {
 }
 
 func usage() {
-	fmt.Println(`help: code format demo`)
+	fmt.Println(`cf [json|xxxx|xxxx] '{"name":"tom", "age": 18}'`)
 	flag.PrintDefaults()
 }

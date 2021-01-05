@@ -11,7 +11,7 @@ import (
 
 var web webview.WebView
 var appSlice []string
-
+	
 var (
 	h bool
 	v bool
