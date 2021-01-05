@@ -7,3 +7,5 @@ tmp/
 
 ### emacs
 .dir-locals.el
+
+*.jpg

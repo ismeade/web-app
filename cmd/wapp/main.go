@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/zserge/webview"
+	"github.com/webview/webview"
 )
 
 var web webview.WebView
