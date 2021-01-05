@@ -9,3 +9,4 @@ tmp/
 .dir-locals.el
 
 *.jpg
+*.JPG
